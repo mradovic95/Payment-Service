@@ -1,0 +1,37 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /api
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/webshop_payment_db
+    username: webshop_payment
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        show-sql: true
+        format-sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  activemq:
+    broker-url: tcp://localhost:61616?jms.prefetchPolicy.all=1
+    user: admin
+    password: admin
+oauth:
+  jwt:
+    secret: secret_key
+destination:
+  order: order_destination
+paypal:
+  clientId: AXAzfFF9XZFHcc3ElLdLwMO4f_9G90ZB_v6xUgGp45URrLDYJORwFujwkd3E4HKYKXUjZMc8ameZ3Yjo
+  clientSecret: EL8f-IDdbrHWxT-tFPZM_Fm1ZgU3uRxpEPZm96YHP453flkS-ELJn11oxnwFsXJ_tIKylmyILyvdQf52
+  redirectUrl: http://localhost:3000/shoopingCart

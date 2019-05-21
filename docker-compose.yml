@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    volumes:
+    - $PWD/init/:/docker-entrypoint-initdb.d
+    ports:
+    - "5433:5432"
+    environment:
+    - POSTGRES_PASSWORD=test
+  pgadmin:
+    image: meedan/pgadmin
+    volumes:
+    - $PWD/pgadmin4/data:/home/pgadmin/.pgadmin
+    ports:
+    - "5051:5050"
+    links:
+    - "postgres:postgres"
+    depends_on:
+    - postgres
